@@ -1,3 +1,15 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "allowSyntheticDefaultImports": true, // React was warning
+  "esModuleInterop": true, // React was warning
+  "typeRoots": ["./src/types"],
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "baseUrl": "src",
+    "paths": {
+      "common/*": ["components/common/*"],
+      "slices/*": ["context/slices/*"]
+    }
+  }
 }
