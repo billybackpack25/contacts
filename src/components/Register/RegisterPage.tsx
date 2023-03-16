@@ -6,7 +6,10 @@ import Container from 'components/common/container';
 import CustomButton from 'common/CustomButton/ButtonComponent';
 import Input from 'common/Input/InputComponent';
 import {LOGIN} from 'constants/routeNames';
-import {Props, RegisterFormType} from 'screens/Register/RegisterScreen';
+import {
+  RegisterScreenProps,
+  RegisterFormType,
+} from 'screens/Register/RegisterScreen';
 import styles from './styles';
 import {useAppSelector} from 'hooks/redux';
 import {useFocusEffect} from '@react-navigation/native';
@@ -20,7 +23,7 @@ export type AuthFormType = {
   onSubmit: Function;
 };
 
-const RegisterPage: React.FC<AuthFormType & Props> = ({
+const RegisterPage: React.FC<AuthFormType & RegisterScreenProps> = ({
   onChange,
   form,
   getFormValue,
@@ -91,7 +94,7 @@ const RegisterPage: React.FC<AuthFormType & Props> = ({
         <View style={styles.btn}>
           <CustomButton
             title="Register"
-            state="secondary"
+            state="notice"
             onPress={onSubmit}
             loading={loading}
             disabled={loading}

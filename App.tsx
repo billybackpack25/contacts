@@ -11,7 +11,7 @@ import envs from 'config/envs';
 
 export const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  console.log(envs);
+  console.log('envs: ', envs);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,

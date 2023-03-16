@@ -1,8 +1,13 @@
 import {LOGIN_API} from 'constants/apiNames';
+import {LOGIN} from 'constants/routeNames';
 import {AppDispatch} from 'context/store';
 import http from 'helpers/axiosIntercepter';
-import {RegisterFormType} from 'screens/Register/RegisterScreen';
+import {
+  RegisterFormType,
+  RegisterScreenProps,
+} from 'screens/Register/RegisterScreen';
 import {login, authLoading, setError, clearAuthState} from 'slices/auth';
+import {setNotification} from 'slices/contacts';
 
 export interface UserDataInterface {
   [key: string]: RegisterFormType;
@@ -22,7 +27,8 @@ export default ({
     firstName,
     lastName,
   }: RegisterFormType) =>
-  async (dispatch: AppDispatch) => {
+  (dispatch: AppDispatch) =>
+  async (onSuccess: Function) => {
     dispatch(authLoading(true));
     await new Promise((r: any) => setTimeout(r, 1000));
     if (username === 'Fail') {
@@ -59,7 +65,7 @@ export default ({
           firstName,
           lastName,
         };
-        dispatch(login(false));
+        onSuccess(data[username]);
       }
     }
     dispatch(authLoading(false));

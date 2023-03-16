@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from 'common/container';
 import CustomButton from 'common/CustomButton/ButtonComponent';
 import Input from 'common/Input/InputComponent';
@@ -9,12 +9,15 @@ import styles from './styles';
 import useTogglePasswordVisibility from 'hooks/useTogglePasswordVisibility';
 import MessageComponent from 'common/Message/Message';
 import {AuthFormType} from 'components/Register/RegisterPage';
-import {useAppSelector} from 'hooks/redux';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import {setNotification} from 'slices/contacts';
 
 const LoginPage: React.FC<Omit<AuthFormType, 'errors'> & Props> = props => {
   const {getFormValue, onChange} = props;
   const {loading, error} = useAppSelector(state => state.auth);
   const {passwordVisibility, Icon} = useTogglePasswordVisibility();
+  const notification = useAppSelector(state => state.contacts.notification);
+  const dispatch = useAppDispatch();
 
   return (
     <Container style={{marginTop: 100}}>
@@ -28,10 +31,17 @@ const LoginPage: React.FC<Omit<AuthFormType, 'errors'> & Props> = props => {
 
         {error?.message && (
           <MessageComponent
-            // retry={() => console.log('Hello world!')}
             onDismiss={() => null}
             message={error?.message}
             state="danger"
+          />
+        )}
+
+        {notification?.message && (
+          <MessageComponent
+            onDismiss={() => dispatch(setNotification({}))}
+            message={notification.message}
+            state={notification.state}
           />
         )}
 
@@ -55,7 +65,7 @@ const LoginPage: React.FC<Omit<AuthFormType, 'errors'> & Props> = props => {
         <View style={styles.btn}>
           <CustomButton
             title="Login"
-            state="secondary"
+            state="notice"
             onPress={props.onSubmit}
             loading={loading}
           />

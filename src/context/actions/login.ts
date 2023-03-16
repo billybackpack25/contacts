@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AppDispatch} from 'context/store';
 import {RegisterFormType} from 'screens/Register/RegisterScreen';
-import {login, authLoading, setError} from 'slices/auth';
+import {login, authLoading, setError, setUser} from 'slices/auth';
 import {data} from './register';
 
 export default ({password, username}: RegisterFormType) =>
@@ -10,7 +10,8 @@ export default ({password, username}: RegisterFormType) =>
     await new Promise((r: any) => setTimeout(r, 1000));
     if (username && username in data && data[username].password === password) {
       dispatch(login(true));
-      // AsyncStorage.setItem('USER', JSON.stringify(data[username]));
+      dispatch(setUser(data[username]));
+      AsyncStorage.setItem('USER', JSON.stringify(data[username]));
     } else {
       dispatch(login(false));
       dispatch(

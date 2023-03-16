@@ -1,18 +1,14 @@
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  GestureResponderEvent,
-} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import styles, {loadingColor} from './styles';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
+import {MessageState} from 'common/Message/Message';
 
 export type State = 'primary' | 'secondary' | 'danger';
 
 export interface ButtonInterface {
   title: string;
-  state: State;
+  state: MessageState;
   onPress: any;
   disabled?: boolean;
   loading?: boolean;

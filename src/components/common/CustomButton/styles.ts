@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {ButtonInterface, State} from './ButtonComponent';
 import colors from '../../../assets/theme/colors';
-import {MessageInterface} from 'common/Message/Message';
+import {MessageState} from 'common/Message/Message';
 
 // const getBorderColor = (props: any) => {
 //     if (props.focused) return colors.primary;
@@ -14,19 +14,19 @@ import {MessageInterface} from 'common/Message/Message';
 //     return 'row'
 //   }
 
-export const loadingColor = (state: State) =>
+export const loadingColor = (state: MessageState) =>
   ({
     info: colors.secondary,
     notice: colors.primary,
     danger: colors.secondary,
   }[state]);
 
-export default (props: Partial<MessageInterface>) =>
+export default (props: Partial<ButtonInterface>) =>
   StyleSheet.create({
     buttonContainer: {
       backgroundColor: props.disabled
         ? colors.grey
-        : colors[props.state || 'primary'],
+        : loadingColor(props.state || 'notice'),
       height: 42,
       alignItems: 'center',
       justifyContent: 'space-evenly',

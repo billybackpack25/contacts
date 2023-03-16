@@ -10,8 +10,13 @@ import register, {clearAuthAction} from 'context/actions/register';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {setError as reduxSetError} from 'slices/auth';
 import {useFocusEffect} from '@react-navigation/native';
+import {LOGIN} from 'constants/routeNames';
+import {setNotification} from 'slices/contacts';
 
-export type Props = NativeStackScreenProps<AuthStackParamList, 'Register'>;
+export type RegisterScreenProps = NativeStackScreenProps<
+  AuthStackParamList,
+  'Register'
+>;
 
 export type RegisterFormType = {
   username?: string;
@@ -28,7 +33,7 @@ export type OnChangeFormType = {
 
 export type ErrorLabelType = (keyof RegisterFormType)[];
 
-const RegisterScreen: React.FC<Props> = props => {
+const RegisterScreen: React.FC<RegisterScreenProps> = props => {
   const dispatch = useAppDispatch();
   const {data, error: formErrors} = useAppSelector(state => state.auth);
   const [form, setForm] = useState<RegisterFormType>({});
@@ -84,10 +89,16 @@ const RegisterScreen: React.FC<Props> = props => {
   };
 
   const onSubmit = () => {
-    if (formValidation().includes(true)) {
-      console.log('ERROR');
-    } else {
-      register(form)(dispatch);
+    if (!formValidation().includes(true)) {
+      register(form)(dispatch)((data: RegisterFormType) => {
+        dispatch(
+          setNotification({
+            message: `You have successfully created an account`,
+            state: 'info',
+          }),
+        );
+        props.navigation.navigate(LOGIN, data);
+      });
     }
   };
 

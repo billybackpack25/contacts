@@ -1,13 +1,13 @@
 import {View, Text, GestureResponderEvent} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
-export type State = 'info' | 'notice' | 'danger';
+export type MessageState = 'info' | 'notice' | 'danger';
 
 export interface MessageInterface {
   message: string;
-  state: State;
+  state: MessageState;
   retry?: () => void;
   onDismiss?: () => void;
 }
@@ -16,6 +16,7 @@ const MessageComponent: React.FC<MessageInterface> = props => {
   const provideStyles = styles(props);
   const {message, state, ...moreProps} = props;
   const [dismissed, setDismissed] = useState(false);
+
   if (dismissed) return null;
   return (
     <View style={provideStyles.messageContainer}>

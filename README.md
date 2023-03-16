@@ -87,3 +87,6 @@ Uses the mockApi directory. Run `yarn mock`.
 - Hooking up the register form to the state
 
 - Created a message component to show errors on the login screen
+- Updated the login/logout with AsyncStorage token
+- Updating the drawer nav
+- Adding a notification reducer in contacts to show as a message when someone registers up
