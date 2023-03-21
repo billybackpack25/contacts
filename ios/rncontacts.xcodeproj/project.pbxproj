@@ -14,22 +14,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-rncontacts-rncontactsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-rncontacts-rncontactsTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E5E77FA029C33CB6003B07F7 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9029C33CB6003B07F7 /* Fontisto.ttf */; };
-		E5E77FA129C33CB6003B07F7 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9129C33CB6003B07F7 /* Octicons.ttf */; };
-		E5E77FA229C33CB6003B07F7 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9229C33CB6003B07F7 /* Feather.ttf */; };
-		E5E77FA329C33CB6003B07F7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9329C33CB6003B07F7 /* Entypo.ttf */; };
-		E5E77FA429C33CB6003B07F7 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9429C33CB6003B07F7 /* FontAwesome5_Brands.ttf */; };
-		E5E77FA529C33CB6003B07F7 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9529C33CB6003B07F7 /* MaterialCommunityIcons.ttf */; };
-		E5E77FA629C33CB6003B07F7 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9629C33CB6003B07F7 /* AntDesign.ttf */; };
-		E5E77FA729C33CB6003B07F7 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9729C33CB6003B07F7 /* Foundation.ttf */; };
-		E5E77FA829C33CB6003B07F7 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9829C33CB6003B07F7 /* Ionicons.ttf */; };
-		E5E77FA929C33CB6003B07F7 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9929C33CB6003B07F7 /* FontAwesome5_Solid.ttf */; };
-		E5E77FAA29C33CB6003B07F7 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9A29C33CB6003B07F7 /* FontAwesome5_Regular.ttf */; };
-		E5E77FAB29C33CB6003B07F7 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9B29C33CB6003B07F7 /* FontAwesome.ttf */; };
-		E5E77FAC29C33CB6003B07F7 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9C29C33CB6003B07F7 /* Zocial.ttf */; };
-		E5E77FAD29C33CB6003B07F7 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9D29C33CB6003B07F7 /* EvilIcons.ttf */; };
-		E5E77FAE29C33CB6003B07F7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9E29C33CB6003B07F7 /* SimpleLineIcons.ttf */; };
-		E5E77FAF29C33CB6003B07F7 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E77F9F29C33CB6003B07F7 /* MaterialIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,23 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5E77FA029C33CB6003B07F7 /* Fontisto.ttf in Resources */,
-				E5E77FAB29C33CB6003B07F7 /* FontAwesome.ttf in Resources */,
-				E5E77FA729C33CB6003B07F7 /* Foundation.ttf in Resources */,
-				E5E77FAA29C33CB6003B07F7 /* FontAwesome5_Regular.ttf in Resources */,
-				E5E77FA829C33CB6003B07F7 /* Ionicons.ttf in Resources */,
-				E5E77FAD29C33CB6003B07F7 /* EvilIcons.ttf in Resources */,
-				E5E77FA329C33CB6003B07F7 /* Entypo.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				E5E77FAC29C33CB6003B07F7 /* Zocial.ttf in Resources */,
-				E5E77FAE29C33CB6003B07F7 /* SimpleLineIcons.ttf in Resources */,
-				E5E77FA229C33CB6003B07F7 /* Feather.ttf in Resources */,
-				E5E77FA129C33CB6003B07F7 /* Octicons.ttf in Resources */,
-				E5E77FA429C33CB6003B07F7 /* FontAwesome5_Brands.ttf in Resources */,
-				E5E77FA629C33CB6003B07F7 /* AntDesign.ttf in Resources */,
-				E5E77FAF29C33CB6003B07F7 /* MaterialIcons.ttf in Resources */,
-				E5E77FA929C33CB6003B07F7 /* FontAwesome5_Solid.ttf in Resources */,
-				E5E77FA529C33CB6003B07F7 /* MaterialCommunityIcons.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,6 +473,8 @@
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-rncontacts-rncontactsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				DEVELOPMENT_TEAM = 95A9QMY9N3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -521,7 +491,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.bilalhasson.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rncontacts.app/rncontacts";
 			};
@@ -532,7 +502,9 @@
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-rncontacts-rncontactsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 95A9QMY9N3;
 				INFOPLIST_FILE = rncontactsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -545,7 +517,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.bilalhasson.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/rncontacts.app/rncontacts";
 			};
@@ -558,6 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 95A9QMY9N3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = rncontacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -570,7 +543,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.bilalhasson.--PRODUCT-NAME-rfc1034identifier-";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.bilalhasson.rncontacts;
 				PRODUCT_NAME = rncontacts;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -585,6 +559,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 95A9QMY9N3;
 				INFOPLIST_FILE = rncontacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -596,7 +571,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.bilalhasson.--PRODUCT-NAME-rfc1034identifier-";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.bilalhasson.rncontacts;
 				PRODUCT_NAME = rncontacts;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

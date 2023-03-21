@@ -31,7 +31,7 @@ export default (props: Partial<ButtonInterface>) =>
       alignItems: 'center',
       justifyContent: 'space-evenly',
       borderRadius: 4,
-      marginBottom: 5,
+      marginVertical: 5,
     },
     text: {
       color: props.disabled ? colors.black : colors.white,

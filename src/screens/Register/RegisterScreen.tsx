@@ -12,6 +12,7 @@ import {setError as reduxSetError} from 'slices/auth';
 import {useFocusEffect} from '@react-navigation/native';
 import {LOGIN} from 'constants/routeNames';
 import {setNotification} from 'slices/contacts';
+import {CreateContactFormType} from 'screens/Home/CreateContactScreen';
 
 export type RegisterScreenProps = NativeStackScreenProps<
   AuthStackParamList,
@@ -32,6 +33,12 @@ export type OnChangeFormType = {
 };
 
 export type ErrorLabelType = (keyof RegisterFormType)[];
+
+export type FormValidationProps<form> = {
+  form: form;
+  requiredFields: Partial<keyof form>[];
+  setErrors: React.Dispatch<React.SetStateAction<form>>;
+};
 
 const RegisterScreen: React.FC<RegisterScreenProps> = props => {
   const dispatch = useAppDispatch();
@@ -75,7 +82,11 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
       }));
   };
 
-  const formValidation = () => {
+  const formValidation = ({
+    form,
+    requiredFields,
+    setErrors,
+  }: FormValidationProps<RegisterFormType>) => {
     return requiredFields.map(field => {
       if (!form[field]) {
         setErrors(prev => ({
@@ -89,7 +100,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
   };
 
   const onSubmit = () => {
-    if (!formValidation().includes(true)) {
+    if (!formValidation({form, requiredFields, setErrors}).includes(true)) {
       register(form)(dispatch)((data: RegisterFormType) => {
         dispatch(
           setNotification({

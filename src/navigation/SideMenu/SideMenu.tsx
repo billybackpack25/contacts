@@ -1,13 +1,12 @@
 import React from 'react';
-import {Alert, Image, Text} from 'react-native';
+import {Alert, Image} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import styles from './styles';
 import {HOME, SETTINGS} from 'constants/routeNames';
 import {CustomDrawerType} from 'navigation/DrawerNavigator';
 import {DrawerItemProps} from './types';
 import logout from 'context/actions/logout';
-import FontistoIcon from 'react-native-vector-icons/Fontisto';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {Fontisto, MaterialIcons} from 'common/Icon';
 
 const SideMenu = (props: CustomDrawerType) => {
   const {
@@ -34,12 +33,12 @@ const SideMenu = (props: CustomDrawerType) => {
   };
   const menuItems: DrawerItemProps[] = [
     {
-      icon: () => <FontistoIcon name="player-settings" size={21} />,
+      icon: () => <Fontisto name="player-settings" size={21} />,
       label: 'Settings',
       onPress: () => navigate(SETTINGS),
     },
     {
-      icon: () => <MaterialIcon name="logout" size={21} />,
+      icon: () => <MaterialIcons name="logout" size={21} />,
       label: 'Logout',
       onPress: handleLogout,
     },

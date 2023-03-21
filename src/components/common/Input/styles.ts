@@ -18,20 +18,27 @@ const getFlexDirection = ({
   return 'row';
 };
 
-export default (props: any) =>
-  StyleSheet.create({
+export default (props: any) => {
+  const flexDirection = getFlexDirection({
+    icon: props.icon,
+    iconPosition: props.iconPosition,
+  });
+
+  const iconPadding =
+    flexDirection === 'row' ? {paddingRight: 10} : {paddingLeft: 10};
+  return StyleSheet.create({
     wrapper: {
       height: 42,
       borderColor: getBorderColor(props),
       borderWidth: 1,
       borderRadius: 4,
-      flexDirection: getFlexDirection({
-        icon: props.icon,
-        iconPosition: props.iconPosition,
-      }),
+      flexDirection: flexDirection,
       paddingHorizontal: 5,
       alignItems: 'center',
       marginTop: 5,
+    },
+    iconPadding: {
+      ...iconPadding,
     },
     inputContainer: {
       paddingVertical: 5,
@@ -50,3 +57,4 @@ export default (props: any) =>
       fontSize: 12,
     },
   });
+};

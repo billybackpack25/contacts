@@ -90,3 +90,7 @@ Uses the mockApi directory. Run `yarn mock`.
 - Updated the login/logout with AsyncStorage token
 - Updating the drawer nav
 - Adding a notification reducer in contacts to show as a message when someone registers up
+- Set up the modal
+- Added a data/contacts folder with contact details
+- Using a random URI to fetch images
+- Using flatlist to show the data

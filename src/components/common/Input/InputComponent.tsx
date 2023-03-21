@@ -43,7 +43,7 @@ const InputComponent: React.FC<InputInterface & Partial<TextInputProps>> = ({
     <View style={provideStyles.inputContainer}>
       {label && <Text style={provideStyles.label}>{label}</Text>}
       <View style={[provideStyles.wrapper]}>
-        {icon && <View>{icon}</View>}
+        {icon && <View style={provideStyles.iconPadding}>{icon}</View>}
         <TextInput
           style={provideStyles.textInput}
           onChangeText={onChangeText}

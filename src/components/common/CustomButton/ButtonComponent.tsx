@@ -12,24 +12,20 @@ export interface ButtonInterface {
   onPress: any;
   disabled?: boolean;
   loading?: boolean;
+  overrideStyle?: typeof styles;
 }
 
-const ButtonComponent: React.FC<ButtonInterface> = ({
-  title,
-  disabled,
-  loading,
-  state,
-  onPress,
-  ...props
-}) => {
-  const provideStyles = styles({title, disabled, loading, state});
+const ButtonComponent: React.FC<ButtonInterface> = props => {
+  const {title, disabled, loading, state, onPress, overrideStyle, ...btnProps} =
+    props;
+  const provideStyles = overrideStyle ? overrideStyle(props) : styles(props);
 
   return (
     <TouchableOpacity
       disabled={disabled}
       onPress={onPress}
       style={provideStyles.buttonContainer}
-      {...props}>
+      {...btnProps}>
       <View style={provideStyles.loading}>
         {loading && <ActivityIndicator color={loadingColor(state)} />}
         {title && <Text style={provideStyles.text}>{title}</Text>}

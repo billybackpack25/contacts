@@ -1,12 +1,12 @@
+import React, {useEffect, useState} from 'react';
 import {DrawerActions} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useAppSelector} from 'hooks/redux';
-import React, {useEffect} from 'react';
-import {Text} from 'react-native';
-import {TouchableOpacity} from 'react-native';
-import Container from '../../components/common/container';
+import {Text, TouchableOpacity} from 'react-native';
 import {HomeStackParamList} from '../../navigation/HomeNavigator';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {MaterialIcons} from 'common/Icon';
+import ContactsComponent from 'components/Contacts/ContactsComponent';
+import Container from 'common/container';
 
 export type ContactScreenProps = NativeStackScreenProps<
   HomeStackParamList,
@@ -14,26 +14,28 @@ export type ContactScreenProps = NativeStackScreenProps<
 >;
 
 const ContactScreen: React.FC<ContactScreenProps> = props => {
-  const {data} = useAppSelector(state => state.auth);
   const {setOptions} = props.navigation;
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     setOptions({
+      headerTitleAlign: 'center',
       headerLeft: () => (
         <TouchableOpacity
           onPress={() =>
             props.navigation.dispatch(DrawerActions.toggleDrawer())
           }>
-          <Icon name="menu" size={21} />
+          <MaterialIcons name="menu" size={21} />
         </TouchableOpacity>
       ),
     });
   }, []);
 
   return (
-    <Container>
-      <Text>Hello, {data?.username}</Text>
-    </Container>
+    <ContactsComponent
+      modalVisible={modalVisible}
+      setModalVisible={setModalVisible}
+    />
   );
 };
 
