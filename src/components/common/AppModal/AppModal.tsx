@@ -4,14 +4,11 @@ import {
   ModalProps,
   View,
   ScrollView,
-  Pressable,
   Alert,
+  TouchableOpacity,
 } from 'react-native';
 import React, {ReactElement} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import styles from './styles';
-import Container from 'common/container';
-import ButtonComponent from 'common/CustomButton/ButtonComponent';
 import {EvilIcons} from 'common/Icon';
 
 interface AppModalProps {
@@ -19,7 +16,7 @@ interface AppModalProps {
   modalProps: ModalProps;
   modalFooter?: ReactElement;
   children: ReactElement;
-  setModalVisible: Function;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AppModal: React.FC<AppModalProps> = props => {

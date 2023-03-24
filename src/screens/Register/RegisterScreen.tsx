@@ -1,7 +1,5 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React, {useCallback, useState} from 'react';
 import RegisterPage from 'components/Register/RegisterPage';
-import {AuthStackParamList} from 'navigation/AuthNavigator';
 import {
   camelToReadableLowercase,
   capitaliseFirstLetter,
@@ -12,12 +10,7 @@ import {setError as reduxSetError} from 'slices/auth';
 import {useFocusEffect} from '@react-navigation/native';
 import {LOGIN} from 'constants/routeNames';
 import {setNotification} from 'slices/contacts';
-import {CreateContactFormType} from 'screens/Home/CreateContactScreen';
-
-export type RegisterScreenProps = NativeStackScreenProps<
-  AuthStackParamList,
-  'Register'
->;
+import {RegisterScreenProps} from 'screens/types';
 
 export type RegisterFormType = {
   username?: string;

@@ -1,7 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import LoginComponent from 'components/Login/LoginPage';
-import {AuthStackParamList} from 'navigation/AuthNavigator';
 import {
   OnChangeFormType,
   RegisterFormType,
@@ -11,10 +9,9 @@ import {setError} from 'slices/auth';
 import login from 'context/actions/login';
 import {useFocusEffect} from '@react-navigation/native';
 import {setNotification} from 'slices/contacts';
+import {LoginScreenProps} from 'screens/types';
 
-export type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
-
-const LoginScreen: React.FC<Props> = props => {
+const LoginScreen: React.FC<LoginScreenProps> = props => {
   const [form, setForm] = useState<RegisterFormType>({});
   const {error: formErrors, loading} = useAppSelector(state => state.auth);
   const {notification} = useAppSelector(state => state.contacts);

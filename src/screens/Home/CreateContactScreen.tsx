@@ -1,17 +1,11 @@
 import React, {useState} from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import CreateContactComponent from 'components/CreateContact/CreateContactComponent';
-import {HomeStackParamList} from 'navigation/HomeNavigator';
 import {createContact} from 'context/actions/contacts';
 import {useAppDispatch} from 'hooks/redux';
 import {FormValidationProps} from 'screens/Register/RegisterScreen';
 import {camelToReadableLowercase} from 'utils/stringManipulation';
 import {CONTACT_LIST} from 'constants/routeNames';
-
-export type CreateContactScreenProps = NativeStackScreenProps<
-  HomeStackParamList,
-  'Create contact'
->;
+import {CreateContactScreenProps} from 'screens/types';
 
 export type CreateContactFormType = {
   firstName?: string;

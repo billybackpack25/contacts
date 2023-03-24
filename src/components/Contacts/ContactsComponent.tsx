@@ -1,3 +1,4 @@
+import React, {useCallback, useEffect, useRef} from 'react';
 import {
   View,
   Text,
@@ -5,30 +6,22 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Image,
+  TouchableHighlight,
+  Platform,
 } from 'react-native';
-import React, {useEffect} from 'react';
-import AppModal from 'common/AppModal/AppModal';
-import MessageComponent from 'common/Message/Message';
-import getContactsAction from 'context/actions/contacts';
-import {useAppDispatch, useAppSelector} from 'hooks/redux';
+
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+
 import {ContactListType} from 'data/contacts';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import getContactsAction from 'context/actions/contacts';
+import MessageComponent from 'common/Message/Message';
+import {AntDesign} from 'common/Icon';
+import {initials, snakeCase} from 'utils/stringManipulation';
+import {CREATE_CONTACT} from 'constants/routeNames';
 import colors from 'assets/theme/colors';
 import styles from './styles';
-import {AntDesign} from 'common/Icon';
-import {initials} from 'utils/stringManipulation';
-import {useNavigation} from '@react-navigation/native';
-import {CONTACT, CREATE_CONTACT} from 'constants/routeNames';
-import {
-  NativeStackNavigationProp,
-  NativeStackScreenProps,
-} from '@react-navigation/native-stack';
-import {CreateContactScreenProps} from 'screens/Home/CreateContactScreen';
-import {HomeStackParamList} from 'navigation/HomeNavigator';
-
-interface ContactsComponentProps {
-  modalVisible: boolean;
-  setModalVisible: Function;
-}
+import ButtonComponent from 'common/CustomButton/ButtonComponent';
 
 const ListEmptyComponent = () => (
   <View style={{padding: 100}}>
@@ -71,10 +64,12 @@ const renderItem = ({item}: {item: ContactListType}) => {
   );
 };
 
-const ContactsComponent: React.FC<ContactsComponentProps> = ({
-  modalVisible,
-  setModalVisible,
-}) => {
+interface ContactsComponentProps {
+  sortBy: string;
+}
+
+const ContactsComponent: React.FC<ContactsComponentProps> = props => {
+  const {sortBy} = props;
   const dispatch = useAppDispatch();
   const {
     data: contacts,
@@ -83,6 +78,7 @@ const ContactsComponent: React.FC<ContactsComponentProps> = ({
     newData,
   } = useAppSelector(state => state.contacts.contacts);
   const {navigate} = useNavigation();
+  const contactList = useRef<FlatList>(null);
 
   useEffect(() => {
     getContactsAction()(dispatch);
@@ -91,28 +87,6 @@ const ContactsComponent: React.FC<ContactsComponentProps> = ({
   return (
     <>
       <View style={styles.page}>
-        <AppModal
-          modalProps={{
-            visible: modalVisible,
-          }}
-          setModalVisible={setModalVisible}>
-          <>
-            <Text>Hi</Text>
-            <Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-              quod autem aspernatur eveniet totam et nobis! Modi aliquid
-              nesciunt similique quisquam omnis consequuntur non eos veniam,
-              fugiat ducimus soluta quos provident in eum ab quis earum repellat
-              tempora iure exercitationem illo facere vel! Numquam rem et
-              repudiandae libero eos reprehenderit?
-            </Text>
-          </>
-        </AppModal>
-        {/* <ButtonComponent
-        title="Show Modal"
-        onPress={() => setModalVisible(true)}
-        state="info"
-      /> */}
         {loading ? (
           <ActivityIndicator size={'large'} color={colors.primary} />
         ) : error ? (
@@ -124,7 +98,17 @@ const ContactsComponent: React.FC<ContactsComponentProps> = ({
         ) : (
           <View style={styles.listWrapper}>
             <FlatList
-              data={contacts}
+              ref={contactList}
+              data={
+                sortBy
+                  ? contacts?.slice()?.sort((a, b) => {
+                      const sorting = snakeCase(
+                        sortBy,
+                      ) as keyof ContactListType;
+                      return b[sorting] > a[sorting] ? -1 : 1;
+                    })
+                  : contacts
+              }
               extraData={newData}
               keyExtractor={item => `${item.id}`}
               ListEmptyComponent={ListEmptyComponent}
@@ -133,6 +117,7 @@ const ContactsComponent: React.FC<ContactsComponentProps> = ({
               ItemSeparatorComponent={() => (
                 <View style={styles.itemSeparator} />
               )}
+              initialNumToRender={8}
             />
           </View>
         )}

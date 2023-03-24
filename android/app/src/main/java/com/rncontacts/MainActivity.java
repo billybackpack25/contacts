@@ -1,4 +1,4 @@
-package com.rncontacts;
+package com.bilal.rncontacts;
 
 import android.os.Bundle; // React Navigation
 import com.facebook.react.ReactActivity;

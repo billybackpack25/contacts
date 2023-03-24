@@ -1,6 +1,6 @@
 import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
-import styles, {loadingColor} from './styles';
+import styles, {loadingIndicatorColor} from './styles';
 import {TouchableOpacity} from 'react-native';
 import {MessageState} from 'common/Message/Message';
 
@@ -27,7 +27,7 @@ const ButtonComponent: React.FC<ButtonInterface> = props => {
       style={provideStyles.buttonContainer}
       {...btnProps}>
       <View style={provideStyles.loading}>
-        {loading && <ActivityIndicator color={loadingColor(state)} />}
+        {loading && <ActivityIndicator color={loadingIndicatorColor(state)} />}
         {title && <Text style={provideStyles.text}>{title}</Text>}
       </View>
     </TouchableOpacity>

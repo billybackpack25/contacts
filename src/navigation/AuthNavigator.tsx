@@ -2,15 +2,8 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LOGIN, REGISTER as REG} from 'constants/routeNames';
 import LoginScreen from 'screens/Login/LoginScreen';
-import RegisterScreen, {
-  RegisterFormType,
-} from 'screens/Register/RegisterScreen';
-
-// Navigating to the login screen can take register params
-export type AuthStackParamList = {
-  Login: RegisterFormType | undefined;
-  Register: undefined;
-};
+import RegisterScreen from 'screens/Register/RegisterScreen';
+import {AuthStackParamList} from './types';
 
 const AuthNavigator = () => {
   const Stack = createNativeStackNavigator<AuthStackParamList>();

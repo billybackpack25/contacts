@@ -5,6 +5,7 @@ import {AuthNavigator} from '.';
 import {useAppDispatch, useAppSelector} from '../hooks/redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {login, setUser} from 'slices/auth';
+import {navRef} from './RootNavigator';
 
 export const AppNavContainer = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
@@ -24,7 +25,7 @@ export const AppNavContainer = () => {
   }, []);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navRef}>
       {isLoggedIn ? <DrawerNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );

@@ -1,18 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Container from 'common/container';
 import CustomButton from 'common/CustomButton/ButtonComponent';
 import Input from 'common/Input/InputComponent';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {REGISTER} from 'constants/routeNames';
-import {Props} from 'screens/Login/LoginScreen';
 import styles from './styles';
 import useTogglePasswordVisibility from 'hooks/useTogglePasswordVisibility';
 import MessageComponent from 'common/Message/Message';
 import {AuthFormType} from 'components/Register/RegisterPage';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {setNotification} from 'slices/contacts';
+import {LoginScreenProps} from 'screens/types';
 
-const LoginPage: React.FC<Omit<AuthFormType, 'errors'> & Props> = props => {
+const LoginPage: React.FC<
+  Omit<AuthFormType, 'errors'> & LoginScreenProps
+> = props => {
   const {getFormValue, onChange} = props;
   const {loading, error} = useAppSelector(state => state.auth);
   const {passwordVisibility, Icon} = useTogglePasswordVisibility();

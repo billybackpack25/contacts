@@ -14,12 +14,25 @@ import {MessageState} from 'common/Message/Message';
 //     return 'row'
 //   }
 
+type LoadingIndicatorType = {
+  [key in MessageState]: MessageState;
+};
+
 export const loadingColor = (state: MessageState) =>
   ({
     info: colors.secondary,
     notice: colors.primary,
     danger: colors.secondary,
   }[state]);
+
+export const loadingIndicatorColor = (state: MessageState) => {
+  const color: LoadingIndicatorType = {
+    danger: 'info',
+    notice: 'info',
+    info: 'notice',
+  };
+  return loadingColor(color[state]);
+};
 
 export default (props: Partial<ButtonInterface>) =>
   StyleSheet.create({

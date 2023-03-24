@@ -1,18 +1,11 @@
-import {View, Text, Image, Switch, Button} from 'react-native';
-import React, {
-  MutableRefObject,
-  ReactElement,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import {View, Text, Image, Switch, TouchableOpacity, Alert} from 'react-native';
+import React, {ReactElement, useEffect, useRef, useState} from 'react';
 import styles from './styles';
 import Container from 'common/container';
 import InputComponent from 'common/Input/InputComponent';
 import ButtonComponent from 'common/CustomButton/ButtonComponent';
 import {CountryPicker} from 'react-native-country-codes-picker';
 import {AntDesign} from 'common/Icon';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from 'assets/theme/colors';
 import {DEFAULT_PROFILE_URI} from 'constants/general';
 import {
@@ -22,9 +15,7 @@ import {
 import {countryCodes} from 'react-native-country-codes-picker/constants/countryCodes';
 import ImagePicker from 'common/ImagePicker/ImagePicker';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import requestCameraPermission from 'common/ImagePicker/AndroidPermission';
-// import ImageCropPicker from 'react-native-image-crop-picker';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {photoOptions} from './enums';
 
 type CreateContactComponentProps = {
   onChangeText: ({
@@ -62,66 +53,8 @@ const CreateContactComponent: React.FC<CreateContactComponentProps> = props => {
   const closeSheet = () => sheetRef.current && sheetRef.current.close();
   const openSheet = () => sheetRef.current && sheetRef.current.open();
 
-  const options = [
-    {
-      name: 'Take a photo',
-      icon: <AntDesign name="camera" color={colors.grey} size={21} />,
-      onPress: async () => {
-        const result = await launchCamera({
-          mediaType: 'photo',
-        });
-        console.log(result);
-        // launchCamera({mediaType: 'photo'}, item => {
-        //   console.log(item);
-        // }).then(image => console.log(image));
-      },
-      // ImageCropPicker.openCamera({
-      //   width: 300,
-      //   height: 300,
-      //   cropping: true,
-      //   freeStyleCropEnabled: true,
-      // })
-      //   .then(image => {
-      //     console.log(image);
-      //     onFileSelected(image);
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
-    },
-    {
-      name: 'Choose a photo',
-      icon: <AntDesign name="picture" color={colors.grey} size={21} />,
-      onPress: () => {
-        // ImageCropPicker.openPicker({
-        //   width: 300,
-        //   height: 300,
-        //   cropping: true,
-        //   freeStyleCropEnabled: true,
-        // })
-        //   .then(image => {
-        //     console.log(image);
-        //     onFileSelected(image);
-        //   })
-        //   .catch(error => {
-        //     console.log(error);
-        //   });
-      },
-    },
-    {
-      name: 'Permission',
-      icon: (
-        <ButtonComponent
-          state="info"
-          title="Permission"
-          onPress={requestCameraPermission}
-        />
-      ),
-    },
-  ];
-
   const rBSheetOptions = () =>
-    options.map(({name, icon, onPress}) => (
+    photoOptions({onChangeText, closeSheet}).map(({name, icon, onPress}) => (
       <View key={name} style={styles.pickerContentWrapper}>
         <TouchableOpacity style={styles.pickerRow} onPress={onPress}>
           {icon}
@@ -130,17 +63,14 @@ const CreateContactComponent: React.FC<CreateContactComponentProps> = props => {
       </View>
     ));
 
-  const onFileSelected = (image: any) => {
-    console.log(image);
-    closeSheet();
-  };
-
   return (
     <View style={styles.container}>
       <Container>
         <View style={styles.imageAndText}>
           <Image
-            source={{uri: DEFAULT_PROFILE_URI}}
+            source={{
+              uri: getFormValue('contactPicture') || DEFAULT_PROFILE_URI,
+            }}
             style={styles.profileImage}
           />
           <TouchableOpacity onPress={openSheet}>

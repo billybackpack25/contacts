@@ -1,18 +1,10 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {CONTACT_LIST, CREATE_CONTACT} from '../constants/routeNames';
+import {CONTACT_LIST, CREATE_CONTACT, SETTINGS} from '../constants/routeNames';
 import ContactScreen from 'screens/Home/ContactsScreen';
 import CreateContactScreen from 'screens/Home/CreateContactScreen';
-
-export type HomeStackParamList = {
-  Contacts: undefined;
-  'Create contact': {id: number} | undefined;
-};
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends HomeStackParamList {}
-  }
-}
+import SettingsScreen from 'screens/Settings/SettingsScreen';
+import {HomeStackParamList} from './types';
 
 const HomeNavigator = () => {
   const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -20,6 +12,7 @@ const HomeNavigator = () => {
     <Stack.Navigator initialRouteName={CONTACT_LIST}>
       <Stack.Screen name={CONTACT_LIST} component={ContactScreen} />
       <Stack.Screen name={CREATE_CONTACT} component={CreateContactScreen} />
+      <Stack.Screen name={SETTINGS} component={SettingsScreen} />
     </Stack.Navigator>
   );
 };

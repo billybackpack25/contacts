@@ -24,6 +24,7 @@ export const requestCameraPermission = async () => {
     }
     return false;
   }
+  return true;
 };
 
 export default requestCameraPermission;
