@@ -12,6 +12,28 @@ If running as new, run
 
 `app.json` contains the app name
 
+## Firebase (Not using, doesn't support new ARCH)
+
+- `console.firebase.google.com` Created a new app
+- Created a new IOS integration
+- `https://rnfirebase.io/` Integration with React native
+- using storage `https://rnfirebase.io/storage/usage`
+
+## Cusomtising
+
+- Change package name (Android)
+  - search for `com.<project_name>`, replace with a more unique name
+- Change the app name (IOS / Android)
+  - Android: `strings.xml`
+  - IOS: `info.plist` > `CFBundleDisplayName`
+- Change the icon image
+  - Android: Open android studios
+    - `app` > `res` > right click > `Image Asset` > upload image and replace ic_launcher file
+  - IOS: https://www.appicon.co/
+    - Download > ppIcons > Assets.xcassets > AppIcon.apiconset
+    - select rncontacts > Images > AppIcon
+    - Drag the correct size files into place
+
 ## Project Structure
 
 - src
@@ -64,6 +86,10 @@ Separate environments and variables
 `json-mock-api`
 
 Uses the mockApi directory. Run `yarn mock`.
+
+## Taking/Using photos
+
+https://www.npmjs.com/package/react-native-image-picker
 
 ## Last steps
 
