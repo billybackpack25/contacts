@@ -1,12 +1,12 @@
+import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import {Fontisto, MaterialIcons} from 'common/Icon';
+import {CONTACT_LIST, SETTINGS} from 'constants/routeNames';
+import logout from 'context/actions/logout';
+import {CustomDrawerType} from 'navigation/DrawerNavigator';
 import React from 'react';
 import {Alert, Image} from 'react-native';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import styles from './styles';
-import {HOME, SETTINGS} from 'constants/routeNames';
-import {CustomDrawerType} from 'navigation/DrawerNavigator';
 import {DrawerItemProps} from './types';
-import logout from 'context/actions/logout';
-import {Fontisto, MaterialIcons} from 'common/Icon';
 
 const SideMenu = (props: CustomDrawerType) => {
   const {
@@ -52,7 +52,7 @@ const SideMenu = (props: CustomDrawerType) => {
             style={styles.logo}
           />
         )}
-        onPress={() => props.navigation.navigate(HOME)}
+        onPress={() => props.navigation.navigate(CONTACT_LIST)}
       />
       {menuItems.map((item, index) => (
         <DrawerItem

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {MessageState} from 'common/Message/Message';
-import {ContactListType, contacts as dataContacts} from 'data/contacts';
+import {ContactListType} from 'data/contacts';
 
 type ContactState = {
   contacts: {

@@ -31,15 +31,21 @@ const LoginScreen: React.FC<LoginScreenProps> = props => {
     useCallback(() => {
       return () => {
         // Take away errors when leaving the screen
-        if (formErrors) dispatch(setError(null));
-        if (notification) dispatch(setNotification(null));
+        if (formErrors) {
+          dispatch(setError(null));
+        }
+        if (notification) {
+          dispatch(setNotification(null));
+        }
       };
     }, [formErrors, notification]),
   );
 
   const onChange = ({name, value}: OnChangeFormType) => {
     setForm(prev => ({...prev, [name]: value}));
-    if (formErrors) dispatch(setError({...formErrors, [name]: null}));
+    if (formErrors) {
+      dispatch(setError({...formErrors, [name]: null}));
+    }
   };
 
   const onSubmit = () => {

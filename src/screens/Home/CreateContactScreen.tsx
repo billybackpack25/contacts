@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import CreateContactComponent from 'components/CreateContact/CreateContactComponent';
-import {createContact} from 'context/actions/contacts';
-import {useAppDispatch} from 'hooks/redux';
+import {CONTACT_DETAIL} from 'constants/routeNames';
+import {createContact, updateContact} from 'context/actions/contacts';
+import {ContactListType} from 'data/contacts';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import useSetHeader from 'hooks/useSetHeader';
+import React, {useCallback, useState} from 'react';
 import {FormValidationProps} from 'screens/Register/RegisterScreen';
-import {camelToReadableLowercase} from 'utils/stringManipulation';
-import {CONTACT_LIST} from 'constants/routeNames';
 import {CreateContactScreenProps} from 'screens/types';
+import {camelToReadableLowercase} from 'utils/stringManipulation';
 
 export type CreateContactFormType = {
   firstName?: string;
@@ -22,24 +25,49 @@ export type OnChangeFormType<Type> = {
 };
 
 const CreateContactScreen: React.FC<CreateContactScreenProps> = props => {
+  useSetHeader({});
   const [form, setForm] = useState<CreateContactFormType>({});
   const dispatch = useAppDispatch();
   const [errors, setErrors] = useState<CreateContactFormType>({});
+  const dataContacts =
+    useAppSelector(state => state.contacts.contacts.data) || [];
+
+  useFocusEffect(
+    useCallback(() => {
+      if (props.route.params) {
+        const formParams = props.route.params;
+        setForm({
+          contactPicture: formParams.contact_picture,
+          countryCode: formParams.country_code,
+          firstName: formParams.first_name,
+          isFavourite: formParams.is_favourite,
+          lastName: formParams.last_name,
+          phoneNumber: formParams.phone_number,
+        });
+      }
+    }, [props.route.params]),
+  );
 
   const getFormValue = (name: keyof CreateContactFormType) => {
-    if (typeof name === 'boolean') return form[name] || false;
+    if (typeof name === 'boolean') {
+      return form[name] || false;
+    }
     return form[name] || '';
   };
 
-  const onChangeText = ({
-    name,
-    value,
-  }: OnChangeFormType<CreateContactFormType>) => {
-    setForm(prev => ({...prev, [name]: value}));
-    if (errors[name]) {
-      setErrors(prev => ({...prev, [name]: null}));
-    }
-  };
+  /**
+   * Added useCallback so that I can use it inside of a useEffect,
+   * in the CreateContactComponent
+   */
+  const onChangeText = useCallback(
+    ({name, value}: OnChangeFormType<CreateContactFormType>) => {
+      setForm(prev => ({...prev, [name]: value}));
+      if (errors[name]) {
+        setErrors(prev => ({...prev, [name]: null}));
+      }
+    },
+    [errors],
+  );
 
   const validation = () => {
     const requiredFields: Partial<keyof CreateContactFormType>[] = [
@@ -71,9 +99,17 @@ const CreateContactScreen: React.FC<CreateContactScreenProps> = props => {
   const onSubmit = () => {
     const validationSuccessful = !validation().includes(true);
     if (validationSuccessful) {
-      createContact(form)(dispatch)(() =>
-        props.navigation.navigate(CONTACT_LIST),
-      );
+      if (props.route.params && props.route.params.id) {
+        updateContact(form, props.route.params.id)(dispatch, dataContacts)(
+          (formData: ContactListType) =>
+            props.navigation.navigate(CONTACT_DETAIL, formData),
+        );
+      } else {
+        createContact(form)(dispatch, dataContacts)(
+          (formData: ContactListType) =>
+            props.navigation.navigate(CONTACT_DETAIL, formData),
+        );
+      }
     }
   };
 

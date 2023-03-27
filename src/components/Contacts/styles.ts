@@ -1,7 +1,21 @@
 import colors from 'assets/theme/colors';
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+
+export const screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
+  horizontalItem: {},
+  editItem: {
+    backgroundColor: colors.grey,
+    // flex: 1,
+    width: 150,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 10,
+  },
+  editText: {
+    fontSize: 17,
+  },
   page: {
     backgroundColor: colors.white,
     flex: 1,
@@ -16,6 +30,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     paddingRight: 20,
     paddingVertical: 15,
+    height: 100,
+    width: screenWidth,
   },
   itemContainer: {
     flexDirection: 'row',

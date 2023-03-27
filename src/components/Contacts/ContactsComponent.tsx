@@ -1,27 +1,25 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
   ActivityIndicator,
+  FlatList,
   Image,
-  TouchableHighlight,
-  Platform,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-import {useNavigation, useFocusEffect} from '@react-navigation/native';
-
+import colors from 'assets/theme/colors';
+import {AntDesign} from 'common/Icon';
+import MessageComponent from 'common/Message/Message';
+import HorizontalLine from 'common/UI/HorizontalLine';
+import {CONTACT_DETAIL, CREATE_CONTACT} from 'constants/routeNames';
+import getContactsAction from 'context/actions/contacts';
 import {ContactListType} from 'data/contacts';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
-import getContactsAction from 'context/actions/contacts';
-import MessageComponent from 'common/Message/Message';
-import {AntDesign} from 'common/Icon';
+import {ContactScreenProps} from 'screens/types';
 import {initials, snakeCase} from 'utils/stringManipulation';
-import {CREATE_CONTACT} from 'constants/routeNames';
-import colors from 'assets/theme/colors';
 import styles from './styles';
-import ButtonComponent from 'common/CustomButton/ButtonComponent';
 
 const ListEmptyComponent = () => (
   <View style={{padding: 100}}>
@@ -29,44 +27,11 @@ const ListEmptyComponent = () => (
   </View>
 );
 
-const renderItem = ({item}: {item: ContactListType}) => {
-  return (
-    <TouchableOpacity style={styles.contactBlock}>
-      <View style={styles.itemContainer}>
-        <View style={styles.leftSide}>
-          {item.contact_picture ? (
-            <Image
-              source={{uri: item.contact_picture}}
-              style={styles.contactPhoto}
-            />
-          ) : (
-            <View style={styles.contactPhoto}>
-              <Text style={styles.avatarInitials}>
-                {initials(item.first_name, item.last_name)}
-              </Text>
-            </View>
-          )}
-          <View style={styles.textLeft}>
-            <View>
-              <Text style={styles.name}>
-                {item.first_name} {item.last_name}{' '}
-                {item.is_favourite && <AntDesign name="heart" />}
-              </Text>
-            </View>
-            <Text style={styles.phoneNumber}>
-              {item.country_code} {item.phone_number}
-            </Text>
-          </View>
-        </View>
-      </View>
-      <AntDesign name="right" size={21} color={colors.grey} />
-    </TouchableOpacity>
-  );
-};
-
-interface ContactsComponentProps {
+interface ContactsComponentProps extends ContactScreenProps {
   sortBy: string;
 }
+
+const horizontalLine = () => <HorizontalLine />;
 
 const ContactsComponent: React.FC<ContactsComponentProps> = props => {
   const {sortBy} = props;
@@ -78,11 +43,61 @@ const ContactsComponent: React.FC<ContactsComponentProps> = props => {
     newData,
   } = useAppSelector(state => state.contacts.contacts);
   const {navigate} = useNavigation();
-  const contactList = useRef<FlatList>(null);
+  const contactListRef = useRef<FlatList>(null);
+
+  const getContactWithsort = () =>
+    sortBy
+      ? contacts?.slice()?.sort((a, b) => {
+          const sorting = snakeCase(sortBy) as keyof ContactListType;
+          if (sortBy === 'is_favourite') {
+            return b[sorting] < a[sorting] ? -1 : 1;
+          }
+          return b[sorting] > a[sorting] ? -1 : 1;
+        })
+      : contacts;
+
+  const renderItem = ({item}: {item: ContactListType}) => {
+    return (
+      <TouchableOpacity
+        style={styles.contactBlock}
+        onPress={() => {
+          navigate(CONTACT_DETAIL, item);
+        }}>
+        <View style={styles.itemContainer}>
+          <View style={styles.leftSide}>
+            {item.contact_picture ? (
+              <Image
+                source={{uri: item.contact_picture}}
+                style={styles.contactPhoto}
+              />
+            ) : (
+              <View style={styles.contactPhoto}>
+                <Text style={styles.avatarInitials}>
+                  {initials(item.first_name, item.last_name)}
+                </Text>
+              </View>
+            )}
+            <View style={styles.textLeft}>
+              <View>
+                <Text style={styles.name}>
+                  {item.first_name} {item.last_name}{' '}
+                  {item.is_favourite && <AntDesign name="heart" />}
+                </Text>
+              </View>
+              <Text style={styles.phoneNumber}>
+                {item.country_code} {item.phone_number}
+              </Text>
+            </View>
+          </View>
+        </View>
+        <AntDesign name="right" size={21} color={colors.grey} />
+      </TouchableOpacity>
+    );
+  };
 
   useEffect(() => {
     getContactsAction()(dispatch);
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -98,26 +113,20 @@ const ContactsComponent: React.FC<ContactsComponentProps> = props => {
         ) : (
           <View style={styles.listWrapper}>
             <FlatList
-              ref={contactList}
-              data={
-                sortBy
-                  ? contacts?.slice()?.sort((a, b) => {
-                      const sorting = snakeCase(
-                        sortBy,
-                      ) as keyof ContactListType;
-                      return b[sorting] > a[sorting] ? -1 : 1;
-                    })
-                  : contacts
-              }
+              ref={contactListRef}
+              data={getContactWithsort()}
+              scrollsToTop
               extraData={newData}
               keyExtractor={item => `${item.id}`}
               ListEmptyComponent={ListEmptyComponent}
               renderItem={renderItem}
-              ListFooterComponent={<View style={{height: 50}} />}
-              ItemSeparatorComponent={() => (
-                <View style={styles.itemSeparator} />
-              )}
+              ItemSeparatorComponent={horizontalLine}
               initialNumToRender={8}
+              getItemLayout={(data, index) => ({
+                length: 100,
+                offset: (100 + 10) * index,
+                index,
+              })}
             />
           </View>
         )}

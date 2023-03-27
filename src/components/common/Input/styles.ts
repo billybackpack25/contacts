@@ -3,8 +3,12 @@ import {InputInterface} from './InputComponent';
 import colors from '../../../assets/theme/colors';
 
 const getBorderColor = (props: any) => {
-  if (props.error) return colors.danger;
-  if (props.focused) return colors.primary;
+  if (props.error) {
+    return colors.danger;
+  }
+  if (props.focused) {
+    return colors.primary;
+  }
   return colors.grey;
 };
 const getLabelColor = (error: Pick<InputInterface, 'error'>) =>
@@ -13,8 +17,9 @@ const getFlexDirection = ({
   icon,
   iconPosition,
 }: Pick<InputInterface, 'icon' | 'iconPosition'>) => {
-  if (icon && iconPosition)
+  if (icon && iconPosition) {
     return iconPosition === 'left' ? 'row' : 'row-reverse';
+  }
   return 'row';
 };
 

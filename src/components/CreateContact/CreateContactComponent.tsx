@@ -1,21 +1,21 @@
-import {View, Text, Image, Switch, TouchableOpacity, Alert} from 'react-native';
-import React, {ReactElement, useEffect, useRef, useState} from 'react';
-import styles from './styles';
-import Container from 'common/container';
-import InputComponent from 'common/Input/InputComponent';
-import ButtonComponent from 'common/CustomButton/ButtonComponent';
-import {CountryPicker} from 'react-native-country-codes-picker';
-import {AntDesign} from 'common/Icon';
 import colors from 'assets/theme/colors';
+import Container from 'common/container';
+import ButtonComponent from 'common/CustomButton/ButtonComponent';
+import {AntDesign} from 'common/Icon';
+import ImagePicker from 'common/ImagePicker/ImagePicker';
+import InputComponent from 'common/Input/InputComponent';
 import {DEFAULT_PROFILE_URI} from 'constants/general';
+import React, {ReactElement, useEffect, useRef, useState} from 'react';
+import {Image, Switch, Text, TouchableOpacity, View} from 'react-native';
+import {CountryPicker} from 'react-native-country-codes-picker';
+import {countryCodes} from 'react-native-country-codes-picker/constants/countryCodes';
+import RBSheet from 'react-native-raw-bottom-sheet';
 import {
   CreateContactFormType,
   OnChangeFormType,
 } from 'screens/Home/CreateContactScreen';
-import {countryCodes} from 'react-native-country-codes-picker/constants/countryCodes';
-import ImagePicker from 'common/ImagePicker/ImagePicker';
-import RBSheet from 'react-native-raw-bottom-sheet';
 import {photoOptions} from './enums';
+import styles from './styles';
 
 type CreateContactComponentProps = {
   onChangeText: ({
@@ -34,21 +34,21 @@ const CreateContactComponent: React.FC<CreateContactComponentProps> = props => {
   const [flag, setFlag] = useState<ReactElement>(
     <AntDesign name="flag" size={21} color={colors.danger} />,
   );
-  useEffect(() => {
-    initialCountryState();
-  }, []);
 
   const sheetRef = useRef<RBSheet | null>(null);
 
-  const initialCountryState = () => {
-    const item = countryCodes.filter(i => i.code === 'GB')[0];
-    onChangeText({name: 'countryCode', value: item.dial_code});
-    setFlag(
-      <Text>
-        {item.flag} {item.dial_code}
-      </Text>,
-    );
-  };
+  useEffect(() => {
+    const initialCountryState = () => {
+      const item = countryCodes.filter(i => i.code === 'GB')[0];
+      onChangeText({name: 'countryCode', value: item.dial_code});
+      setFlag(
+        <Text>
+          {item.flag} {item.dial_code}
+        </Text>,
+      );
+    };
+    initialCountryState();
+  }, [onChangeText]);
 
   const closeSheet = () => sheetRef.current && sheetRef.current.close();
   const openSheet = () => sheetRef.current && sheetRef.current.open();

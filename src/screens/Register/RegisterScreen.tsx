@@ -51,8 +51,12 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
       // Here to call on screen load
       return () => {
         // Call when leaving the screen
-        if (data) clearAuthAction()(dispatch);
-        if (formErrors) dispatch(reduxSetError(null));
+        if (data) {
+          clearAuthAction()(dispatch);
+        }
+        if (formErrors) {
+          dispatch(reduxSetError(null));
+        }
       };
     }, [data, formErrors]),
   );
@@ -63,16 +67,19 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
 
   const onChange = ({name, value}: OnChangeFormType) => {
     setForm(prev => ({...prev, [name]: value}));
-    if (formErrors) dispatch(reduxSetError({...formErrors, [name]: null}));
+    if (formErrors) {
+      dispatch(reduxSetError({...formErrors, [name]: null}));
+    }
     if (errors[name]) {
       setErrors(prev => ({...prev, [name]: null}));
     }
 
-    if (value === '')
+    if (value === '') {
       setErrors(prev => ({
         ...prev,
         [name]: `${capitaliseFirstLetter(name)} is required`,
       }));
+    }
   };
 
   const formValidation = ({
@@ -97,7 +104,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
       register(form)(dispatch)((data: RegisterFormType) => {
         dispatch(
           setNotification({
-            message: `You have successfully created an account`,
+            message: 'You have successfully created an account',
             state: 'info',
           }),
         );

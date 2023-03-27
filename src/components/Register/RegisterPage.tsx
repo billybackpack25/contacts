@@ -1,19 +1,17 @@
 import React, {useCallback} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 
-import useTogglePasswordVisibility from 'hooks/useTogglePasswordVisibility';
-import Container from 'components/common/container';
+import {useFocusEffect} from '@react-navigation/native';
 import CustomButton from 'common/CustomButton/ButtonComponent';
 import Input from 'common/Input/InputComponent';
-import {LOGIN} from 'constants/routeNames';
-import {
-  RegisterScreenProps,
-  RegisterFormType,
-} from 'screens/Register/RegisterScreen';
-import styles from './styles';
-import {useAppSelector} from 'hooks/redux';
-import {useFocusEffect} from '@react-navigation/native';
 import MessageComponent from 'common/Message/Message';
+import Container from 'components/common/container';
+import {LOGIN} from 'constants/routeNames';
+import {useAppSelector} from 'hooks/redux';
+import useTogglePasswordVisibility from 'hooks/useTogglePasswordVisibility';
+import {RegisterFormType} from 'screens/Register/RegisterScreen';
+import {RegisterScreenProps} from 'screens/types';
+import styles from './styles';
 
 export type AuthFormType = {
   getFormValue: Function;
@@ -25,20 +23,20 @@ export type AuthFormType = {
 
 const RegisterPage: React.FC<AuthFormType & RegisterScreenProps> = ({
   onChange,
-  form,
   getFormValue,
   navigation,
   errors,
   onSubmit,
-  ...props
 }) => {
   const {Icon, passwordVisibility} = useTogglePasswordVisibility();
   const {error, loading, data} = useAppSelector(state => state.auth);
 
   useFocusEffect(
     useCallback(() => {
-      if (data && !error) navigation.navigate(LOGIN);
-    }, [data, error]),
+      if (data && !error) {
+        navigation.navigate(LOGIN);
+      }
+    }, [data, error, navigation]),
   );
 
   return (

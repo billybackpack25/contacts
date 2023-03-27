@@ -120,3 +120,7 @@ https://www.npmjs.com/package/react-native-image-picker
 - Added a data/contacts folder with contact details
 - Using a random URI to fetch images
 - Using flatlist to show the data
+
+- Creating the user details page, having issues trying to read the params data
+- Created a useHeaser hook to set the header on every screen
+- Clicking goBack when on the Contact details page will always take you back to the home page, and not the create contact page

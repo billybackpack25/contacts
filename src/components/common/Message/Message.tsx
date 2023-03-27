@@ -17,7 +17,9 @@ const MessageComponent: React.FC<MessageInterface> = props => {
   const {message, state, ...moreProps} = props;
   const [dismissed, setDismissed] = useState(false);
 
-  if (dismissed) return null;
+  if (dismissed) {
+    return null;
+  }
   return (
     <View style={provideStyles.messageContainer}>
       <Text style={provideStyles.text}>{message}</Text>

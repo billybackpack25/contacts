@@ -3,9 +3,10 @@ import SettingsComponent from 'components/Settings/SettingsComponent';
 import {SettingsScreenProps} from 'screens/types';
 import {PreferenceList, SettingOptionsType} from './types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {View} from 'react-native';
 
-const SettingsScreen: React.FC<SettingsScreenProps> = props => {
+type SortByType = 'First name' | 'Last name' | 'is_favourite';
+
+const SettingsScreen: React.FC<SettingsScreenProps> = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<string>('First Name');
 
@@ -53,9 +54,18 @@ const SettingsScreen: React.FC<SettingsScreenProps> = props => {
         setModalVisible(false);
       },
     },
+    {
+      name: 'is_favourite',
+      selected: sortBy === 'is_favourite',
+      onPress: () => {
+        saveSortBy('is_favourite');
+        setSortBy('is_favourite');
+        setModalVisible(false);
+      },
+    },
   ];
-  const saveSortBy = async (sortBy: 'First name' | 'Last name') => {
-    saveSetting('sortBy', sortBy);
+  const saveSortBy = async (By: SortByType) => {
+    saveSetting('sortBy', By);
   };
 
   const saveSetting = async (key: string, value: string) => {
@@ -64,7 +74,9 @@ const SettingsScreen: React.FC<SettingsScreenProps> = props => {
 
   const getSettings = async () => {
     const sortByAsync = await AsyncStorage.getItem('sortBy');
-    if (sortByAsync) setSortBy(sortByAsync);
+    if (sortByAsync) {
+      setSortBy(sortByAsync);
+    }
   };
 
   useEffect(() => {

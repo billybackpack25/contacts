@@ -7,7 +7,7 @@ export const requestCameraPermission = async () => {
         PermissionsAndroid.PERMISSIONS.CAMERA,
         {
           title: 'RNContacts needs access to your camera',
-          message: `Don't be a little bitch (camera access)`,
+          message: "Don't be a little bitch (camera access)",
           buttonNeutral: 'Ask Me Later',
           buttonNegative: 'Cancel',
           buttonPositive: 'OK',

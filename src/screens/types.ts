@@ -29,3 +29,8 @@ export type SettingsScreenProps = NativeStackScreenProps<
   HomeStackParamList,
   'Settings'
 >;
+
+export type ContactDetailScreenProps = NativeStackScreenProps<
+  HomeStackParamList,
+  'ContactDetail'
+>;
