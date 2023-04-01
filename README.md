@@ -126,3 +126,4 @@ https://www.npmjs.com/package/react-native-image-picker
 - Clicking goBack when on the Contact details page will always take you back to the home page, and not the create contact page
 
 - Splash screen working for Android, but IOS is not building, even without configuring a splash screen.
+- Fixed ios version by downgrading xcode which was upgraded a day before automatically.

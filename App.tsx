@@ -15,7 +15,11 @@ export const App = () => {
   console.log('envs: ', envs);
 
   useEffect(() => {
-    SplashScreen.hide();
+    (async () => {
+      await new Promise((i: any) => setTimeout(i, 10000));
+      await SplashScreen.hide();
+      await console.log('Hide splash');
+    })();
   }, []);
 
   // const backgroundStyle = {
