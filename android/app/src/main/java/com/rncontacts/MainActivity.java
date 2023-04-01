@@ -6,11 +6,14 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
 
+import org.devio.rn.splashscreen.SplashScreen; // Splash screen
+
 public class MainActivity extends ReactActivity {
 
   // React Navigation
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    SplashScreen.show(this);
     super.onCreate(null);
   }
 
