@@ -1,7 +1,25 @@
-If running as new, run
+# IOS/Android Contacts App
+
+Features:
+
+- Register/Login/Logout
+- Form validation (required fields)
+- Create new contact
+- Add/save image from gallery or camera
+- Use country code with flags
+- Edit contact
+- Sort contacts by First and Last names as well as favourites
+
+# How to run
 
 - `npm i`
-- `npm pod`
+- `cd .. && yarn start`
+- `a` for android
+
+## Requirements
+
+- Android Studio (version Dolphine)
+- xcode 14.2
 
 - Set up a react native project
   - npx react-native run-ios

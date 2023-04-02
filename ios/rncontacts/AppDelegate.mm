@@ -13,7 +13,6 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
   // [RNSplashScreen show]; // React splash screen
-  [RNSplashScreen showSplash:@"LaunchScreen" inRootView:rootView];
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
