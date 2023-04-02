@@ -80,7 +80,6 @@ export const deleteContact =
   async (onSuccess: Function) => {
     dispatch(setContactsLoading(true));
     try {
-      console.log(contactsData);
       dispatch(setContacts(contactsData.filter(i => i.id !== contact.id)));
       dispatch(setNewData());
       onSuccess();

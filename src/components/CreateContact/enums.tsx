@@ -24,9 +24,7 @@ export const photoOptions = (props: OptionsType) => [
     onPress: () => {
       requestCameraPermission().then(youHavePermission => {
         if (youHavePermission) {
-          launchCamera({mediaType: 'photo'}, item => {
-            console.log(item);
-          }).then(image => {
+          launchCamera({mediaType: 'photo'}).then(image => {
             if (image.assets) {
               props.onChangeText({
                 name: 'contactPicture',

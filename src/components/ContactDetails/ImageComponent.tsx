@@ -27,9 +27,13 @@ const ImageComponent: React.FC<ImageComponentProps> = ({src}) => {
 
   return src ? (
     <View style={styles.imageContainer}>
-      {hasError && <Text style={styles.errorText}>Error occoured</Text>}
-      {isLoading && !hasError && (
-        <ActivityIndicator size={'large'} color={colors.primary} />
+      {(hasError || isLoading) && (
+        <View style={styles.textView}>
+          {hasError && <Text style={styles.errorText}>Error occoured</Text>}
+          {isLoading && !hasError && (
+            <ActivityIndicator size={'large'} color={colors.primary} />
+          )}
+        </View>
       )}
       <Image
         source={{uri: src}}

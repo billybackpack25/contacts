@@ -18,11 +18,16 @@ export default StyleSheet.create({
   },
   imageContainer: {
     height: 300,
-    justifyContent: 'center',
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   errorText: {
     alignSelf: 'center',
+  },
+  textView: {
+    alignSelf: 'center',
+    paddingTop: 50,
   },
   fullNameView: {
     padding: 20,

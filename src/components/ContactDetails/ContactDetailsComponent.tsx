@@ -26,7 +26,6 @@ const ContactDetailsComponent: React.FC<
 
   useFocusEffect(
     useCallback(() => {
-      console.log('UseCallback');
       setContact(prev => ({...prev, contact: props.route.params}));
     }, [props.route.params]),
   );
