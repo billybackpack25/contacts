@@ -29,3 +29,8 @@ Features:
 - Redux
 - React Navigation
 - Image picker https://www.npmjs.com/package/react-native-image-picker
+
+## Screen recording
+
+https://user-images.githubusercontent.com/68790383/229347774-26e745da-41db-4b58-b5ba-5f945f6c4d9c.mov
+
