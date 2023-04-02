@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 import colors from '../../assets/theme/colors';
 
 export default StyleSheet.create({
+  loginPageContainer: {marginTop: 100},
   logo: {
     height: 120,
     width: '100%',

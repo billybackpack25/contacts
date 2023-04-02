@@ -40,7 +40,7 @@ const RegisterPage: React.FC<AuthFormType & RegisterScreenProps> = ({
   );
 
   return (
-    <Container style={{marginTop: 100}}>
+    <Container style={styles.container}>
       <Image
         source={require('../../assets/images/logo.png')}
         style={styles.logo}

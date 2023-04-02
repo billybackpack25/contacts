@@ -58,7 +58,7 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
           dispatch(reduxSetError(null));
         }
       };
-    }, [data, formErrors]),
+    }, [data, formErrors, dispatch]),
   );
 
   const getFormValue = (name: keyof RegisterFormType) => {
@@ -83,13 +83,13 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
   };
 
   const formValidation = ({
-    form,
-    requiredFields,
-    setErrors,
+    form: formV,
+    requiredFields: required,
+    setErrors: settingErrors,
   }: FormValidationProps<RegisterFormType>) => {
-    return requiredFields.map(field => {
-      if (!form[field]) {
-        setErrors(prev => ({
+    return required.map(field => {
+      if (!formV[field]) {
+        settingErrors(prev => ({
           ...prev,
           [field]: `The ${camelToReadableLowercase(field)} field is required`,
         }));
@@ -101,14 +101,14 @@ const RegisterScreen: React.FC<RegisterScreenProps> = props => {
 
   const onSubmit = () => {
     if (!formValidation({form, requiredFields, setErrors}).includes(true)) {
-      register(form)(dispatch)((data: RegisterFormType) => {
+      register(form)(dispatch)((dat: RegisterFormType) => {
         dispatch(
           setNotification({
             message: 'You have successfully created an account',
             state: 'info',
           }),
         );
-        props.navigation.navigate(LOGIN, data);
+        props.navigation.navigate(LOGIN, dat);
       });
     }
   };

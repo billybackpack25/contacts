@@ -2,6 +2,12 @@ import colors from 'assets/theme/colors';
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
+  radioButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 5,
+  },
+  radioText: {fontSize: 17, paddingLeft: 15},
   scrollView: {
     backgroundColor: colors.white,
   },

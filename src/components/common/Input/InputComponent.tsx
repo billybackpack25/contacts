@@ -1,10 +1,4 @@
-import {
-  View,
-  TextInput,
-  Text,
-  TextInputIOSProps,
-  TextInputProps,
-} from 'react-native';
+import {View, TextInput, Text, TextInputProps} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 
@@ -21,7 +15,6 @@ export interface InputInterface {
 const InputComponent: React.FC<InputInterface & Partial<TextInputProps>> = ({
   onChangeText,
   icon,
-  style,
   value,
   label,
   iconPosition,

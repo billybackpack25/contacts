@@ -127,7 +127,7 @@ const CreateContactComponent: React.FC<CreateContactComponentProps> = props => {
         </View>
 
         <ButtonComponent title="Save" state="info" onPress={onSubmit} />
-        <View style={{paddingTop: 50}}>
+        <View style={styles.countryPickerView}>
           <CountryPicker
             lang="en"
             show={showCountryCodeModal}

@@ -21,9 +21,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
   },
-  listWrapper: {
-    // paddingVertical: 5,
-  },
+  listEmptyContainer: {padding: 100},
   contactBlock: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -1,9 +1,5 @@
 import React, {useEffect} from 'react';
 import 'react-native-gesture-handler';
-
-// import {useColorScheme} from 'react-native';
-
-// import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {Provider} from 'react-redux';
 import store from './src/context/store';
 import {AppNavContainer} from 'navigation';

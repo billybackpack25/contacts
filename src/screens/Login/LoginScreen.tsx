@@ -13,7 +13,7 @@ import {LoginScreenProps} from 'screens/types';
 
 const LoginScreen: React.FC<LoginScreenProps> = props => {
   const [form, setForm] = useState<RegisterFormType>({});
-  const {error: formErrors, loading} = useAppSelector(state => state.auth);
+  const {error: formErrors} = useAppSelector(state => state.auth);
   const {notification} = useAppSelector(state => state.contacts);
   const dispatch = useAppDispatch();
   const {
@@ -38,7 +38,7 @@ const LoginScreen: React.FC<LoginScreenProps> = props => {
           dispatch(setNotification(null));
         }
       };
-    }, [formErrors, notification]),
+    }, [formErrors, notification, dispatch]),
   );
 
   const onChange = ({name, value}: OnChangeFormType) => {

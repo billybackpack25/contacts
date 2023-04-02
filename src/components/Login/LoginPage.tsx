@@ -22,7 +22,7 @@ const LoginPage: React.FC<
   const dispatch = useAppDispatch();
 
   return (
-    <Container style={{marginTop: 100}}>
+    <Container style={styles.loginPageContainer}>
       <Image
         source={require('../../assets/images/logo.png')}
         style={styles.logo}

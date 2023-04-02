@@ -8,7 +8,7 @@ type SortByType = 'First name' | 'Last name' | 'is_favourite';
 
 const SettingsScreen: React.FC<SettingsScreenProps> = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [sortBy, setSortBy] = useState<string>('First Name');
+  const [sortBy, setSortBy] = useState<string>('First name');
 
   const settingsOptions: SettingOptionsType = [
     {title: 'My Info', subTitle: 'Setup your profile', onPress: () => null},
@@ -25,7 +25,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = () => {
     },
     {
       title: 'Sort by',
-      subTitle: sortBy,
+      subTitle: sortBy === 'is_favourite' ? 'Favourites' : sortBy,
       onPress: () => setModalVisible(true),
     },
     {title: 'Name Format', subTitle: 'First Name first', onPress: () => null},
@@ -55,7 +55,7 @@ const SettingsScreen: React.FC<SettingsScreenProps> = () => {
       },
     },
     {
-      name: 'is_favourite',
+      name: 'Favourites',
       selected: sortBy === 'is_favourite',
       onPress: () => {
         saveSortBy('is_favourite');

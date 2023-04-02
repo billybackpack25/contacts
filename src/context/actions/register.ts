@@ -1,22 +1,15 @@
-import {LOGIN_API} from 'constants/apiNames';
-import {LOGIN} from 'constants/routeNames';
 import {AppDispatch} from 'context/store';
-import http from 'helpers/axiosIntercepter';
-import {
-  RegisterFormType,
-  RegisterScreenProps,
-} from 'screens/Register/RegisterScreen';
+import {RegisterFormType} from 'screens/Register/RegisterScreen';
 import {login, authLoading, setError, clearAuthState} from 'slices/auth';
-import {setNotification} from 'slices/contacts';
 
 export interface UserDataInterface {
   [key: string]: RegisterFormType;
 }
 
 export const data: UserDataInterface = {
-  Bilal: {
-    username: 'Bilal',
-    password: 'h',
+  Username: {
+    username: 'Username',
+    password: 'password',
   },
 };
 
@@ -70,22 +63,6 @@ export default ({
     }
     dispatch(authLoading(false));
   };
-
-const registerHttp = ({
-  email,
-  password,
-  username,
-  firstName,
-  lastName,
-}: RegisterFormType) => {
-  return http.post(LOGIN_API, {
-    email,
-    password,
-    username,
-    firstName,
-    lastName,
-  });
-};
 
 export const clearAuthAction = () => (dispatch: AppDispatch) => {
   dispatch(clearAuthState());

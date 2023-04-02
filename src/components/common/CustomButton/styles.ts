@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {ButtonInterface, State} from './ButtonComponent';
+import {ButtonInterface} from './ButtonComponent';
 import colors from '../../../assets/theme/colors';
 import {MessageState} from 'common/Message/Message';
 

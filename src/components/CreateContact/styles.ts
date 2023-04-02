@@ -40,4 +40,5 @@ export default StyleSheet.create({
     fontSize: 17,
     paddingLeft: 17,
   },
+  countryPickerView: {paddingTop: 50},
 });

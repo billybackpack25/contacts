@@ -1,11 +1,9 @@
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
-import colors from 'assets/theme/colors';
+import styles from './styles';
 
 const HorizontalLine: React.FC = () => {
-  return (
-    <View style={{height: 1, opacity: 0.7, backgroundColor: colors.grey}} />
-  );
+  return <View style={styles.hl} />;
 };
 
 export default HorizontalLine;

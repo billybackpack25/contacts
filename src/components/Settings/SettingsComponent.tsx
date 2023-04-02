@@ -32,18 +32,14 @@ const SettingsComponent: React.FC<SettingsComponentProps> = props => {
             <TouchableOpacity
               onPress={onPress}
               key={`${name}_${index}`}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingBottom: 5,
-              }}>
+              style={styles.radioButtons}>
               <View>
                 <MaterialIcons
                   name={`radio-button-${!selected ? 'un' : ''}checked`}
                   size={17}
                 />
               </View>
-              <Text style={{fontSize: 17, paddingLeft: 15}}>{name}</Text>
+              <Text style={styles.radioText}>{name}</Text>
             </TouchableOpacity>
           ))}
         </View>

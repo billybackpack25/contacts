@@ -15,13 +15,14 @@ export interface NavHeaderProps {
   title?: ReactNode;
 }
 
-export interface NavHeaderComponentProps extends NativeStackHeaderProps {}
+export interface NavHeaderComponentProps
+  extends NativeStackHeaderProps,
+    NavHeaderProps {}
 
 const NavHeader: React.FC<NavHeaderComponentProps> = ({
   navigation,
   options,
   route,
-  back,
   home = false,
   goBackAmount,
   headerRight,

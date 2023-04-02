@@ -1,13 +1,13 @@
-import React from 'react';
 import colors from 'assets/theme/colors';
 import {AntDesign} from 'common/Icon';
 import requestCameraPermission from 'common/ImagePicker/AndroidPermission';
+import React from 'react';
+import {Alert} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {
   CreateContactFormType,
   OnChangeFormType,
 } from 'screens/Home/CreateContactScreen';
-import {Alert} from 'react-native';
 
 type OptionsType = {
   onChangeText: ({

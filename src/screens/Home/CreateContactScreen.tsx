@@ -80,13 +80,13 @@ const CreateContactScreen: React.FC<CreateContactScreenProps> = props => {
   };
 
   const formValidation = ({
-    form,
+    form: forms,
     requiredFields,
-    setErrors,
+    setErrors: settingErrors,
   }: FormValidationProps<CreateContactFormType>) => {
     return requiredFields.map(field => {
-      if (!form[field]) {
-        setErrors(prev => ({
+      if (!forms[field]) {
+        settingErrors(prev => ({
           ...prev,
           [field]: `The ${camelToReadableLowercase(field)} field is required`,
         }));

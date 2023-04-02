@@ -1,5 +1,5 @@
-import {View, Text, GestureResponderEvent} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {View, Text} from 'react-native';
+import React, {useState} from 'react';
 import styles from './styles';
 import {TouchableOpacity} from 'react-native';
 
@@ -14,7 +14,7 @@ export interface MessageInterface {
 
 const MessageComponent: React.FC<MessageInterface> = props => {
   const provideStyles = styles(props);
-  const {message, state, ...moreProps} = props;
+  const {message} = props;
   const [dismissed, setDismissed] = useState(false);
 
   if (dismissed) {

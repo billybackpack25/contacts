@@ -22,7 +22,7 @@ import {initials, snakeCase} from 'utils/stringManipulation';
 import styles from './styles';
 
 const ListEmptyComponent = () => (
-  <View style={{padding: 100}}>
+  <View style={styles.listEmptyContainer}>
     <MessageComponent message="no contacts to show" state="info" />
   </View>
 );
@@ -111,7 +111,7 @@ const ContactsComponent: React.FC<ContactsComponentProps> = props => {
             retry={() => getContactsAction()(dispatch)}
           />
         ) : (
-          <View style={styles.listWrapper}>
+          <View>
             <FlatList
               ref={contactListRef}
               data={getContactWithsort()}

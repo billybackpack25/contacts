@@ -11,18 +11,17 @@ export const AppNavContainer = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
   const dispatch = useAppDispatch();
 
-  const getUser = async () => {
-    const user_token = await AsyncStorage.getItem('USER');
-    if (user_token) {
-      dispatch(login(true));
-      dispatch(setUser(JSON.parse(user_token)));
-    }
-    return true;
-  };
-
   useEffect(() => {
+    const getUser = async () => {
+      const user_token = await AsyncStorage.getItem('USER');
+      if (user_token) {
+        dispatch(login(true));
+        dispatch(setUser(JSON.parse(user_token)));
+      }
+      return true;
+    };
     getUser();
-  }, []);
+  }, [dispatch]);
 
   return (
     <NavigationContainer ref={navRef}>
